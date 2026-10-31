@@ -50,7 +50,7 @@
         <a href="#home" class="nav-link active">Home</a>
         <a href="#about" class="nav-link">About Us</a>
         <a href="#services" class="nav-link">Our Services</a>
-        <a href="#portfolio" class="nav-link">Portfolio</a>
+        <a href="#portfolio" class="nav-link">Portfolio &amp; Gallery</a>
         <a href="#booking" class="nav-link">Book a Service</a>
         <a href="#contact" class="nav-link">Contact Us</a>
       </nav>
@@ -82,7 +82,7 @@
         <a href="#home" class="nav-link">Home</a>
         <a href="#about" class="nav-link">About Us</a>
         <a href="#services" class="nav-link">Our Services</a>
-        <a href="#portfolio" class="nav-link">Portfolio</a>
+        <a href="#portfolio" class="nav-link">Portfolio &amp; Gallery</a>
         <a href="#booking" class="nav-link">Book a Service</a>
         <a href="#contact" class="nav-link">Contact Us</a>
       </nav>
@@ -151,14 +151,25 @@
       </div>
 
       <!-- Modern Hero Visual Spotlight Card -->
-      <div class="hero-showcase-card">
-        <div class="hero-card-inner">
-          <img src="images/work-bridal-portrait.jpg" alt="Featured RS Media Client Work" class="hero-showcase-img" width="540" height="440">
+      <div class="hero-showcase-card" id="heroSpotlightCard">
+        <div class="hero-card-inner hero-card-rotator">
+          <div class="hero-rotator-slide active" data-title="Royal Bridal Showcase" data-category="Wedding &amp; Portraiture">
+            <img src="images/work-bridal-portrait.jpg" alt="Featured RS Media Client Work" class="hero-showcase-img" width="540" height="440">
+          </div>
+          <div class="hero-rotator-slide" data-title="Royal Wedding Reception" data-category="Event Coverage">
+            <img src="images/work-wedding-ceremony.jpg" alt="Featured Wedding Reception" class="hero-showcase-img" width="540" height="440">
+          </div>
+          <div class="hero-rotator-slide" data-title="JABU Product Packaging" data-category="Brand &amp; Packaging Design">
+            <img src="images/work-jabu-packaging.jpg" alt="Featured Brand Packaging" class="hero-showcase-img" width="540" height="440">
+          </div>
+          <div class="hero-rotator-slide" data-title="AKYIDOM Identity" data-category="Corporate Branding">
+            <img src="images/work-akyidom-brand.png" alt="Featured Brand Identity" class="hero-showcase-img" width="540" height="440">
+          </div>
           <div class="hero-showcase-overlay">
             <span class="showcase-badge"><i class="fa-solid fa-camera"></i> Featured Client Project</span>
             <div class="showcase-info">
-              <span class="showcase-category">Wedding &amp; Portraiture</span>
-              <h3 class="showcase-title">Royal Bridal Showcase</h3>
+              <span class="showcase-category" id="heroRotatorCategory">Wedding &amp; Portraiture</span>
+              <h3 class="showcase-title" id="heroRotatorTitle">Royal Bridal Showcase</h3>
               <p class="showcase-location"><i class="fa-solid fa-location-dot"></i> Kumasi Abuakwa, Ghana</p>
             </div>
           </div>
@@ -200,14 +211,59 @@
 
       <!-- About Grid: Story & Visuals -->
       <div class="about-grid">
-        <div class="about-image-card">
-          <img src="images/work-bridal-portrait.jpg" alt="RS Media Consult Photography" width="600" height="480">
+        <div class="about-image-card about-gallery-slider" id="aboutGallerySlider">
+          <!-- Slides Container -->
+          <div class="about-slides-wrapper">
+            <div class="about-slide active" data-index="0" data-category="Bridal Photography" data-title="Traditional Bridal Portrait" data-src="images/work-bridal-portrait.jpg">
+              <img src="images/work-bridal-portrait.jpg" alt="Traditional Bridal Portrait" width="600" height="520">
+            </div>
+            <div class="about-slide" data-index="1" data-category="Event Coverage" data-title="Royal Wedding Ceremony" data-src="images/work-wedding-ceremony.jpg">
+              <img src="images/work-wedding-ceremony.jpg" alt="Royal Wedding Ceremony" width="600" height="520">
+            </div>
+            <div class="about-slide" data-index="2" data-category="Packaging &amp; Branding" data-title="JABU Drink Packaging" data-src="images/work-jabu-packaging.jpg">
+              <img src="images/work-jabu-packaging.jpg" alt="JABU Drink Packaging" width="600" height="520">
+            </div>
+            <div class="about-slide" data-index="3" data-category="Corporate Branding" data-title="AKYIDOM Brand Identity" data-src="images/work-akyidom-brand.png">
+              <img src="images/work-akyidom-brand.png" alt="AKYIDOM Brand Identity" width="600" height="520">
+            </div>
+            <div class="about-slide" data-index="4" data-category="Logo Design" data-title="JABU 3D Brand Emblem" data-src="images/work-jabu-logo.png">
+              <img src="images/work-jabu-logo.png" alt="JABU 3D Brand Emblem" width="600" height="520">
+            </div>
+          </div>
+
+          <!-- Top Gallery Badge & Fullscreen Lightbox Button -->
+          <div class="about-gallery-top-bar">
+            <span class="gallery-live-badge"><i class="fa-solid fa-images"></i> Project Gallery</span>
+            <button type="button" class="gallery-fullscreen-btn" id="openAboutLightboxBtn" aria-label="Open Fullscreen Gallery">
+              <i class="fa-solid fa-expand"></i>
+            </button>
+          </div>
+
+          <!-- Navigation Arrow Buttons -->
+          <button type="button" class="gallery-nav-btn gallery-prev" id="aboutGalleryPrev" aria-label="Previous Photo">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+          <button type="button" class="gallery-nav-btn gallery-next" id="aboutGalleryNext" aria-label="Next Photo">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+
+          <!-- Floating Badge with Dynamic Title & Slide Counter -->
           <div class="about-badge-floating">
             <i class="fa-solid fa-camera-retro"></i>
             <div>
-              <div class="about-badge-title">Creative Standard</div>
-              <div class="about-badge-value">International Quality</div>
+              <div class="about-badge-title" id="aboutSlideCategory">Bridal Photography</div>
+              <div class="about-badge-value" id="aboutSlideTitle">Traditional Bridal Portrait</div>
             </div>
+            <div class="about-slide-counter" id="aboutSlideCounter">1 / 5</div>
+          </div>
+
+          <!-- Gallery Indicator Dots -->
+          <div class="about-gallery-dots" id="aboutGalleryDots">
+            <button type="button" class="gallery-dot active" data-slide="0" aria-label="Slide 1"></button>
+            <button type="button" class="gallery-dot" data-slide="1" aria-label="Slide 2"></button>
+            <button type="button" class="gallery-dot" data-slide="2" aria-label="Slide 3"></button>
+            <button type="button" class="gallery-dot" data-slide="3" aria-label="Slide 4"></button>
+            <button type="button" class="gallery-dot" data-slide="4" aria-label="Slide 5"></button>
           </div>
         </div>
 
@@ -582,8 +638,8 @@
   <section class="section-padding" id="portfolio" style="background-color: var(--bg-secondary);">
     <div class="container">
       <div class="section-header">
-        <span class="section-badge"><i class="fa-solid fa-photo-film"></i> Showcase of Excellence</span>
-        <h2 class="section-title">Our Featured <span class="gold-gradient-text">Portfolio</span></h2>
+        <span class="section-badge"><i class="fa-solid fa-photo-film"></i> Official Showcase &amp; Gallery</span>
+        <h2 class="section-title">Our Featured <span class="gold-gradient-text">Work &amp; Gallery</span></h2>
         <p class="section-subtitle">
           Explore a curated selection of our photography, cinema commercials, corporate visual branding, web platforms, and event productions.
         </p>
@@ -1088,7 +1144,7 @@
             <li><a href="#home"><i class="fa-solid fa-angle-right"></i> Home</a></li>
             <li><a href="#about"><i class="fa-solid fa-angle-right"></i> About Us</a></li>
             <li><a href="#services"><i class="fa-solid fa-angle-right"></i> Our Services</a></li>
-            <li><a href="#portfolio"><i class="fa-solid fa-angle-right"></i> Portfolio</a></li>
+            <li><a href="#portfolio"><i class="fa-solid fa-angle-right"></i> Portfolio &amp; Gallery</a></li>
             <li><a href="#booking"><i class="fa-solid fa-angle-right"></i> Book a Service</a></li>
             <li><a href="#contact"><i class="fa-solid fa-angle-right"></i> Contact Us</a></li>
           </ul>
