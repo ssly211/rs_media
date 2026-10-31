@@ -530,7 +530,7 @@ Kindly get back to me.`;
   }
 
   // --------------------------------------------------------------------------
-  // 8. HERO BACKGROUND REAL WORKS SLIDESHOW
+  // 8. HERO BACKGROUND & SPOTLIGHT CARD ROTATOR
   // --------------------------------------------------------------------------
   const heroSlides = document.querySelectorAll('.hero-slide');
   if (heroSlides.length > 1) {
@@ -542,8 +542,149 @@ Kindly get back to me.`;
     }, 6000);
   }
 
+  // Hero Spotlight Card Rotator
+  const heroRotatorSlides = document.querySelectorAll('.hero-rotator-slide');
+  const heroRotatorCategory = document.getElementById('heroRotatorCategory');
+  const heroRotatorTitle = document.getElementById('heroRotatorTitle');
+
+  if (heroRotatorSlides.length > 1) {
+    let heroRotatorIndex = 0;
+    setInterval(() => {
+      heroRotatorSlides[heroRotatorIndex].classList.remove('active');
+      heroRotatorIndex = (heroRotatorIndex + 1) % heroRotatorSlides.length;
+      const nextSlide = heroRotatorSlides[heroRotatorIndex];
+      nextSlide.classList.add('active');
+
+      if (heroRotatorCategory && nextSlide.hasAttribute('data-category')) {
+        heroRotatorCategory.innerHTML = nextSlide.getAttribute('data-category');
+      }
+      if (heroRotatorTitle && nextSlide.hasAttribute('data-title')) {
+        heroRotatorTitle.textContent = nextSlide.getAttribute('data-title');
+      }
+    }, 4500);
+  }
+
   // --------------------------------------------------------------------------
-  // 9. BACK TO TOP BUTTON
+  // 9. ABOUT US ROTATING GALLERY SLIDER & LIGHTBOX INTEGRATION
+  // --------------------------------------------------------------------------
+  const aboutSlider = document.getElementById('aboutGallerySlider');
+  const aboutSlides = document.querySelectorAll('.about-slide');
+  const aboutDots = document.querySelectorAll('#aboutGalleryDots .gallery-dot');
+  const aboutPrevBtn = document.getElementById('aboutGalleryPrev');
+  const aboutNextBtn = document.getElementById('aboutGalleryNext');
+  const aboutSlideCategory = document.getElementById('aboutSlideCategory');
+  const aboutSlideTitle = document.getElementById('aboutSlideTitle');
+  const aboutSlideCounter = document.getElementById('aboutSlideCounter');
+  const openAboutLightboxBtn = document.getElementById('openAboutLightboxBtn');
+
+  if (aboutSlides.length > 0) {
+    let currentAboutIndex = 0;
+    let aboutSlideInterval = null;
+
+    function updateAboutSlide(index) {
+      currentAboutIndex = (index + aboutSlides.length) % aboutSlides.length;
+
+      aboutSlides.forEach((slide, i) => {
+        if (i === currentAboutIndex) {
+          slide.classList.add('active');
+          const cat = slide.getAttribute('data-category') || 'Project Gallery';
+          const title = slide.getAttribute('data-title') || 'Featured Work';
+          if (aboutSlideCategory) aboutSlideCategory.textContent = cat;
+          if (aboutSlideTitle) aboutSlideTitle.textContent = title;
+          if (aboutSlideCounter) aboutSlideCounter.textContent = `${currentAboutIndex + 1} / ${aboutSlides.length}`;
+        } else {
+          slide.classList.remove('active');
+        }
+      });
+
+      aboutDots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === currentAboutIndex);
+      });
+    }
+
+    function startAboutAutoRotate() {
+      stopAboutAutoRotate();
+      aboutSlideInterval = setInterval(() => {
+        updateAboutSlide(currentAboutIndex + 1);
+      }, 3500);
+    }
+
+    function stopAboutAutoRotate() {
+      if (aboutSlideInterval) {
+        clearInterval(aboutSlideInterval);
+        aboutSlideInterval = null;
+      }
+    }
+
+    // Next / Prev controls
+    if (aboutNextBtn) {
+      aboutNextBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        updateAboutSlide(currentAboutIndex + 1);
+        startAboutAutoRotate();
+      });
+    }
+
+    if (aboutPrevBtn) {
+      aboutPrevBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        updateAboutSlide(currentAboutIndex - 1);
+        startAboutAutoRotate();
+      });
+    }
+
+    // Dot navigation
+    aboutDots.forEach((dot, i) => {
+      dot.addEventListener('click', (e) => {
+        e.stopPropagation();
+        updateAboutSlide(i);
+        startAboutAutoRotate();
+      });
+    });
+
+    // Pause on hover so visitors can examine details
+    if (aboutSlider) {
+      aboutSlider.addEventListener('mouseenter', stopAboutAutoRotate);
+      aboutSlider.addEventListener('mouseleave', startAboutAutoRotate);
+    }
+
+    // Open current slide in fullscreen Lightbox modal
+    function openCurrentAboutInLightbox() {
+      const activeSlide = aboutSlides[currentAboutIndex];
+      if (!activeSlide) return;
+      const img = activeSlide.querySelector('img');
+      const title = activeSlide.getAttribute('data-title') || 'RS Media Project';
+      const category = activeSlide.getAttribute('data-category') || 'Official Gallery';
+
+      if (lightboxModal && lightboxImg && lightboxTitle && lightboxCategory) {
+        lightboxImg.src = img.src;
+        lightboxImg.alt = title;
+        lightboxTitle.textContent = title;
+        lightboxCategory.textContent = category;
+        lightboxModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    if (openAboutLightboxBtn) {
+      openAboutLightboxBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openCurrentAboutInLightbox();
+      });
+    }
+
+    // Clicking anywhere on the active slide opens lightbox
+    aboutSlides.forEach(slide => {
+      slide.style.cursor = 'pointer';
+      slide.addEventListener('click', openCurrentAboutInLightbox);
+    });
+
+    // Start auto-rotation
+    startAboutAutoRotate();
+  }
+
+  // --------------------------------------------------------------------------
+  // 10. BACK TO TOP BUTTON
   // --------------------------------------------------------------------------
   const backToTopBtn = document.getElementById('backToTopBtn');
   if (backToTopBtn) {
