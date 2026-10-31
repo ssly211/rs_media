@@ -901,18 +901,201 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: var(--radius-lg);
   overflow: hidden;
   border: 1px solid var(--border-gold);
-  box-shadow: var(--shadow-card);
+  box-shadow: var(--shadow-card), 0 0 25px rgba(255, 119, 0, 0.2);
+  height: 520px;
 }
 
-.about-image-card img {
+.about-slides-wrapper {
+  position: relative;
   width: 100%;
-  height: 480px;
+  height: 100%;
+}
+
+.about-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.8s ease-in-out, transform 1s ease-out;
+  transform: scale(1.03);
+}
+
+.about-slide.active {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+.about-slide img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   transition: transform var(--transition-slow);
 }
 
-.about-image-card:hover img {
+.about-image-card:hover .about-slide.active img {
   transform: scale(1.05);
+}
+
+/* Gallery Top Bar */
+.about-gallery-top-bar {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  right: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 5;
+}
+
+.gallery-live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: rgba(7, 9, 14, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(2, 132, 199, 0.4);
+  border-radius: var(--radius-full);
+  color: var(--brand-blue-light);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.gallery-live-badge i {
+  color: var(--brand-orange);
+}
+
+.gallery-fullscreen-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  background: rgba(7, 9, 14, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.gallery-fullscreen-btn:hover {
+  background: var(--brand-orange);
+  border-color: var(--brand-orange);
+  color: #FFFFFF;
+  transform: scale(1.08);
+}
+
+/* Gallery Navigation Arrows */
+.gallery-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  background: rgba(7, 9, 14, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  z-index: 5;
+  opacity: 0.85;
+}
+
+.gallery-nav-btn:hover {
+  background: var(--brand-orange);
+  border-color: var(--brand-orange);
+  opacity: 1;
+  transform: translateY(-50%) scale(1.08);
+}
+
+.gallery-prev {
+  left: 16px;
+}
+
+.gallery-next {
+  right: 16px;
+}
+
+/* Slide Counter in Floating Badge */
+.about-slide-counter {
+  margin-left: auto;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.1);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--brand-orange-light);
+  letter-spacing: 0.5px;
+}
+
+/* Gallery Indicator Dots */
+.about-gallery-dots {
+  position: absolute;
+  bottom: 95px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 5;
+  background: rgba(7, 9, 14, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.gallery-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.35);
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  padding: 0;
+}
+
+.gallery-dot.active {
+  width: 24px;
+  background: linear-gradient(90deg, var(--brand-orange), var(--brand-blue));
+  border-radius: var(--radius-full);
+}
+
+/* Hero Rotator Slide */
+.hero-card-rotator {
+  position: relative;
+}
+
+.hero-rotator-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1s ease-in-out, transform 1.2s ease-out;
+  transform: scale(1.02);
+}
+
+.hero-rotator-slide.active {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
 }
 
 .about-badge-floating {
