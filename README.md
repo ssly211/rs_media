@@ -23,9 +23,11 @@ Built with pure **HTML5**, **CSS3**, and **Vanilla JavaScript** (no heavy framew
    - Direct dispatch to RS MEDIA CONSULT's official Ghana WhatsApp number: `+233209792015` (`https://wa.me/233209792015?text=...`).
    - "BOOK THIS SERVICE" quick buttons on every service card auto-fill category and service, smoothly scrolling directly to the form.
 
-3. **Interactive Portfolio Gallery with Lightbox**
-   - Filter tabs: *All Works*, *Photography*, *Videography*, *Graphic Design*, *Website Development*, and *Events*.
-   - Built-in full-screen modal lightbox with high-resolution image zoom, project title, category tag, and Next/Previous navigation.
+3. **Interactive Portfolio & Rotating Gallery Showcases**
+   - **About Section Rotating Gallery Slider:** Automatically rotates through authentic RS Media Consult works every 3.5s with manual previous/next arrows, live slide counter, indicator dots, and full-screen lightbox zoom.
+   - **Hero Spotlight Card Rotator:** Dynamic real-time project rotator in the hero section.
+   - **Curated Portfolio & Gallery:** Filter tabs (*All Works*, *Photography*, *Videography*, *Graphic Design*, *Website Development*, and *Events*) with interactive full-screen modal lightbox.
+   - Keyboard accessibility (supports <kbd>Esc</kbd> to close, <kbd>&larr;</kbd> / <kbd>&rarr;</kbd> arrow keys to navigate).
    - Keyboard accessibility (supports <kbd>Esc</kbd> to close, <kbd>←</kbd> / <kbd>→</kbd> arrow keys to navigate).
 
 4. **Performance & SEO Ready**
